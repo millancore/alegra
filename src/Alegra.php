@@ -2,6 +2,8 @@
 
 namespace Alegra;
 
+use Alegra\Contract\CarrierInterface;
+use Alegra\Contract\HttpClientInterface;
 use Alegra\Exception\AlegraException;
 use Alegra\Http\HttpClient;
 use Alegra\Http\RestCarrier;
@@ -46,7 +48,7 @@ class Alegra
      */
     public static function setCredentials(array $options)
     {
-        $alegraSDK = new static($options);
+        return new static($options);
     }
 
 
@@ -65,6 +67,39 @@ class Alegra
             new HttpClient($this->config),
             $this->eventManager
         );
+    }
+
+    /**
+     * Get Carrier
+     *
+     * @return CarrierInterface
+     */
+    public function getCarrier() : CarrierInterface
+    {
+        return $this->carrier;
+    }
+
+
+    /**
+     * Get Config
+     *
+     * @return Config
+     */
+    public function getConfig() : Config
+    {
+        return $this->config;
+    }
+
+
+    /**
+     * Set HttpClient
+     *
+     * @param HttpClientInterface $client
+     * @return void
+     */
+    public function setClient(HttpClientInterface $client)
+    {
+        $this->carrier = new RestCarrier($client, $this->eventManager);
     }
 
 }

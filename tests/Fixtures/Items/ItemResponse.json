@@ -1,0 +1,58 @@
+{
+    "id": 12,
+    "name": "Billetera",
+    "description": "Billetera de cuero negro",
+    "reference": "REF-005",
+    "status" : "active",
+    "itemCategory": {
+        "id": "3",
+        "name": "Accesorios",
+        "description": "importados",
+        "status": "inactive"
+    },
+    "inventory": {
+        "unit" : "piece",
+        "availableQuantity" : 150,
+        "unitCost" : 560,
+        "initialQuantity" : 320,
+        "warehouses": [
+          {
+            "id": "1",
+            "name": "Bodega Norte",
+            "observations": null,
+            "isDefault": true,
+            "address":"Dirección de la bodega Norte",
+            "status": "active",
+            "initialQuantity": "320.0",
+            "availableQuantity": "150",
+            "minQuantity": "100",
+            "maxQuantity": "400"
+          }
+         ]
+    },
+    "tax" : [
+        {
+          "id" : 6,
+          "name" : "IVA",
+          "percentage" : 16,
+          "description" : "Impuesto de valor agregado",
+          "status": "active"
+        }
+    ],
+    "category" : {
+        "id": 54,
+        "name" : "Ventas"
+    },
+    "price" : [
+        {
+            "idPriceList" : 1,
+            "name" : "General",
+            "price" : 1200
+        },
+        {
+            "idPriceList" : 2,
+            "name" : "Distribuidor",
+            "price" : 1050
+        }
+    ]
+}

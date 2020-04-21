@@ -29,8 +29,7 @@ class Config
         $resolver->setRequired(['email', 'token']);
 
         $resolver->setDefaults([
-            'api' => 'https://api.alegra.com/api/',
-            'version' => 'v1',
+            'api' => 'https://api.alegra.com/api/v1/',
             'timeout' => '10',
             'logger' => null
         ]);

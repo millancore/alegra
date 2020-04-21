@@ -2,12 +2,13 @@
 
 namespace Alegra\Http;
 
+use Alegra\Contract\CarrierInterface;
 use Alegra\Contract\HttpClientInterface;
 use Alegra\Contract\RequestInterface;
 use Alegra\Exception\HttpException;
 use Laminas\EventManager\EventManagerInterface;
 
-class RestCarrier
+class RestCarrier implements CarrierInterface
 {
     private $client;
     private $eventManager;

@@ -17,7 +17,10 @@ class AlegraTest extends TestCase
 
     public function testInstanceAlegraSDK()
     {
-        Alegra::setCredentials([]);
+        Alegra::setCredentials([
+            'email' => 'test@alegra.com',
+            'token' => 'tokeTestAlgraApiAccess'
+        ]);
 
         $this->assertInstanceOf(Alegra::class, Alegra::getInstance());
     }

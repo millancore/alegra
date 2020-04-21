@@ -8,22 +8,31 @@ use Alegra\Exception\HttpException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 
-class HttpClient extends Client implements HttpClientInterface
+class HttpClient implements HttpClientInterface
 {
+    private $client;
     
     public function __construct(Config $config)
     {
-        parent::__construct([
-            'base_uri' => $config->api.$config->version,
+        $this->client = new Client([
+            'base_uri' => $config->api,
             'timeout' => $config->timeout
         ]);
     }
 
 
-    public function request($method, $uri, array $options = [])
+    /**
+     * Request
+     *
+     * @param string $method
+     * @param string $uri
+     * @param array $options
+     * @return 
+     */
+    public function request($method, $uri = null, array $options = [])
     {
         try {
-            return $this->request($method, $uri, $options);
+            return $this->client->request($method, $uri, $options);
         } catch (TransferException $th) {
             throw new HttpException($th->getMessage());
         }

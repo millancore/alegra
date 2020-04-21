@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=7.1",
-        "guzzlehttp/guzzle": "6.0",
+        "guzzlehttp/guzzle": "6.3",
         "laminas/laminas-eventmanager": "^3.2",
         "psr/log": "^1.1",
         "symfony/options-resolver": "^5.0"
