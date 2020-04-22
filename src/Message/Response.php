@@ -2,8 +2,6 @@
 
 namespace Alegra\Message;
 
-use GuzzleHttp\Psr7\Response as PsrResponse;
-
 abstract class Response
 {
    protected $status;
@@ -25,15 +23,5 @@ abstract class Response
    {
        return $this->status;
    }
-
-   public static function fromGuzzleResponse(PsrResponse $response)
-   {
-       return new static(
-           $response->getStatusCode(),
-           $response->getHeaders(),
-           (string) $response->getBody(),
-       );
-   }
    
-
 }

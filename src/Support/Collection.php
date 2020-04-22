@@ -2,9 +2,11 @@
 
 namespace Alegra\Support;
 
-use ArrayAccess;
+use Alegra\Contract\ArrayableInterface;
+use Alegra\Contract\CollectionInterface;
+use ArrayIterator;
 
-class Collection implements ArrayAccess
+class Collection implements CollectionInterface
 {
     protected $items = [];
 
@@ -78,6 +80,28 @@ class Collection implements ArrayAccess
         } else {
             $this->items[$key] = $value;
         }
+    }
+
+    /**
+     * Get an iterator for the items.
+     *
+     * @return \ArrayIterator
+     */
+    public function getIterator()
+    {
+        return new ArrayIterator($this);
+    }
+
+    /**
+     * Get the collection of items as a plain array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return array_map(function ($value) {
+            return $value instanceof ArrayableInterface ? $value->toArray() : $value;
+        }, $this->items);
     }
 
     /**

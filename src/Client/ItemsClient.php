@@ -4,7 +4,7 @@ namespace Alegra\Client;
 
 use Alegra\Entity\BaseItem;
 use Alegra\Message\ItemRequest;
-use Alegra\Message\ItemRespose;
+use Alegra\Message\ItemResponse;
 
 class ItemsClient extends Client
 {
@@ -24,7 +24,15 @@ class ItemsClient extends Client
             ]
         ]);
 
-        return ItemResponse::fromGuzzleResponse($this->carrier->send($request))->parse();
+        $rawResponse = $this->carrier->send($request);
+
+        $response = new ItemResponse(
+            $rawResponse->getStatusCode(),
+            $rawResponse->getHeaders(),
+            (string) $rawResponse->getBody()
+        );
+
+        return $response->parse();
     }
 
     /**
