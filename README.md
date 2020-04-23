@@ -1,1 +1,0 @@
-## Alegra PHP SDK
