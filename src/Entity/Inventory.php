@@ -2,9 +2,11 @@
 
 namespace Alegra\Entity;
 
+use Alegra\Contract\MappableInterface;
 use Alegra\Support\Collection;
+use Alegra\Support\EntityMapper;
 
-class Inventory extends Entity
+class Inventory extends Entity implements MappableInterface
 {
     protected $unit;
     protected $availableQuantity;
@@ -12,7 +14,7 @@ class Inventory extends Entity
     protected $initialQuantity;
 
     /**
-     * @EntityMapper(type="Collection", entity="Warehose")
+     * @EntityMapper(type="Collection", entity="Warehouse")
      * @var Collection
      */
     protected $warehouses;
@@ -107,8 +109,25 @@ class Inventory extends Entity
         return $this;
     }
 
+
+    /**
+     * Set the value of warehouses
+     *
+     * @param  Collection  $warehouses
+     *
+     * @return  self
+     */ 
+    public function setWarehouses(Collection $warehouses)
+    {
+        $this->warehouses = $warehouses;
+
+        return $this;
+    }
+
+
     public function addWarehouse(Warehouse $warehouse)
     {
         $this->warehouses->add($warehouse);
     }
+
 }

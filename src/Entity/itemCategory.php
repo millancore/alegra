@@ -2,7 +2,7 @@
 
 namespace Alegra\Entity;
 
-class itemCategory extends Entity
+class ItemCategory extends Entity
 {
     protected $id;
     protected $name;

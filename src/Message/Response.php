@@ -2,7 +2,9 @@
 
 namespace Alegra\Message;
 
-abstract class Response
+use Alegra\Contract\ResponseInterface;
+
+class Response implements ResponseInterface
 {
    protected $status;
    protected $headers;
@@ -19,9 +21,19 @@ abstract class Response
        $this->body = $body;
    }
 
-   public function getStatus()
+   public function getStatusCode()
    {
        return $this->status;
+   }
+
+   public function getHeaders()
+   {
+       return $this->headers;
+   }
+
+   public function getBody()
+   {
+       return $this->body;
    }
    
 }

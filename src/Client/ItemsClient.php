@@ -3,11 +3,12 @@
 namespace Alegra\Client;
 
 use Alegra\Entity\BaseItem;
-use Alegra\Message\ItemRequest;
-use Alegra\Message\ItemResponse;
+use Alegra\Entity\EntityFactory;
+use Alegra\Message\Request;
 
 class ItemsClient extends Client
 {
+
     /**
      * Get Item by ID
      *
@@ -16,23 +17,11 @@ class ItemsClient extends Client
      */
     public function get(int $id)
     {
-        $request = new ItemRequest($id, 'GET', [
-            'headers' => [
-                'Accept' => 'application/json',
-                'Content-type' => 'application/json',
-                'Authorization' => 'Basic ZWplbXBsb2FwaUBhbGVncmEuY29tOnRva2VuZWplbXBsb2FwaTEyMzQ1'
-            ]
-        ]);
-
-        $rawResponse = $this->carrier->send($request);
-
-        $response = new ItemResponse(
-            $rawResponse->getStatusCode(),
-            $rawResponse->getHeaders(),
-            (string) $rawResponse->getBody()
+        $response = $this->carrier->send(
+            Request::get('/items/'.$id)->json()
         );
 
-        return $response->parse();
+        return EntityFactory::fromJson($response->getBody(), BaseItem::class);
     }
 
     /**

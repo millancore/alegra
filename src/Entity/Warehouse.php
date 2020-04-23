@@ -69,7 +69,7 @@ class Warehouse extends Entity
      *
      * @return  self
      */ 
-    public function setObservations(string $observations)
+    public function setObservations($observations)
     {
         $this->observations = $observations;
 

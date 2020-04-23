@@ -12,10 +12,11 @@ abstract class Entity implements EntityInterface
 
    public function __construct(array $attributes = [])
    {
-       $this->fill($attributes);
        if (method_exists($this, 'initialize')) {
            call_user_func([$this, 'initialize']);
        }
+
+       $this->fill($attributes);
    }
 
    public function jsonSerialize()

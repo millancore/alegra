@@ -2,10 +2,11 @@
 
 namespace Alegra\Entity;
 
+use Alegra\Contract\MappableInterface;
 use Alegra\Support\Collection;
 use Alegra\Support\EntityMapper;
 
-class BaseItem
+class BaseItem extends Entity implements MappableInterface
 {
     protected $id;
     protected $name;
@@ -112,9 +113,9 @@ class BaseItem
     /**
      * Get the value of decription
      */ 
-    public function getDecription()
+    public function getDescription()
     {
-        return $this->decription;
+        return $this->description;
     }
 
     /**
@@ -122,9 +123,9 @@ class BaseItem
      *
      * @return  self
      */ 
-    public function setDecription($decription)
+    public function setDescription($description)
     {
-        $this->decription = $decription;
+        $this->description = $description;
         return $this;
     }
 
@@ -160,6 +161,18 @@ class BaseItem
     /**
      * Set the value of price
      *
+     * @param Collection $price
+     * @return void
+     */
+    public function setPrice(Collection $price)
+    {
+        $this->price = $price;
+        return $this;
+    }
+
+    /**
+     * Add priceList
+     *
      * @param PriceList  $price
      * @return  self
      */ 
@@ -180,6 +193,18 @@ class BaseItem
 
     /**
      * Set the value of tax
+     *
+     * @param Collection $collectionTax
+     * @return void
+     */
+    public function setTax(Collection $tax)
+    {
+        $this->tax = $tax;
+        return $this;
+    }
+
+    /**
+     * Add tax
      * @param Tax $tax
      * @return  self
      */ 
@@ -305,6 +330,30 @@ class BaseItem
     public function setKitWarehouse(Warehouse $kitWarehouse)
     {
         $this->kitWarehouse = $kitWarehouse;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of itemCategory
+     *
+     * @return  ItemCategory
+     */ 
+    public function getItemCategory()
+    {
+        return $this->itemCategory;
+    }
+
+    /**
+     * Set the value of itemCategory
+     *
+     * @param  ItemCategory  $itemCategory
+     *
+     * @return  self
+     */ 
+    public function setItemCategory(ItemCategory $itemCategory)
+    {
+        $this->itemCategory = $itemCategory;
 
         return $this;
     }

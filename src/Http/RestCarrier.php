@@ -5,7 +5,9 @@ namespace Alegra\Http;
 use Alegra\Contract\CarrierInterface;
 use Alegra\Contract\HttpClientInterface;
 use Alegra\Contract\RequestInterface;
+use Alegra\Contract\ResponseInterface;
 use Alegra\Exception\HttpException;
+use Alegra\Message\Response;
 use Laminas\EventManager\EventManagerInterface;
 
 class RestCarrier implements CarrierInterface
@@ -34,6 +36,7 @@ class RestCarrier implements CarrierInterface
         #Launch Request Event
         $this->eventManager->trigger('http.request', null, [$request]);
         try {
+            /** @var ResponseInterface */
             $response = $this->client->request(
                 $request->getMethod(),
                 $request->getUri(),
@@ -48,7 +51,11 @@ class RestCarrier implements CarrierInterface
         #Launch Response Event
         $this->eventManager->trigger('http.response', null, [$request, $response]);
         
-        return $response;
+        return new Response(
+            $response->getStatusCode(),
+            $response->getHeaders(),
+            (string) $response->getBody()
+        );
     }
 
 }

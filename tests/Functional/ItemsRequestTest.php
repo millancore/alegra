@@ -1,7 +1,11 @@
 <?php
 
 use Alegra\Alegra;
+use Alegra\Entity\BaseItem;
+use Alegra\Entity\Inventory;
+use Alegra\Entity\ItemCategory;
 use Alegra\Http\TestHttpClient;
+use Alegra\Support\Collection;
 use Alegra\Support\Facade\Items;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +19,7 @@ class ItemsRequestTest extends TestCase
     {
        $alegra = Alegra::setCredentials([
             'email' => 'test@alegra.com',
-            'token' => 'tokeTestAlgraApiAccess'
+            'token' => 'tokeTestAlegraApiAccess'
         ]);
 
         $this->client = new TestHttpClient();
@@ -24,15 +28,22 @@ class ItemsRequestTest extends TestCase
 
     public function testGetItemById()
     {
+        $jsonResponse = file_get_contents(FIXTURES.'Items/ItemResponse.json');
+
         $this->client->expectResponse(
             new Response(200, 
                 ['Content-type' => 'application/json'],
-                file_get_contents(FIXTURES.'Items/ItemResponse.json')
+                $jsonResponse
             )
         );
 
+        /**@var BaseItem */
         $product = Items::get(12);
 
-        var_dump($product);
+        $this->assertInstanceOf(BaseItem::class, $product);
+        $this->assertInstanceOf(Inventory::class, $product->getInventory());
+        $this->assertInstanceOf(ItemCategory::class, $product->getItemCategory());
+        $this->assertInstanceOf(Collection::class, $product->getPrice());
+        $this->assertInstanceOf(Collection::class, $product->getTax());
     }
 }
