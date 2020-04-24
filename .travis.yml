@@ -15,4 +15,4 @@ script:
   - composer test -- --coverage-clover=coverage.xml
 after_script:
   - ./cc-test-reporter format-coverage -t clover ./coverage.xml
-  - ./cc-test-reporter upload-coverag
+  - ./cc-test-reporter upload-coverage
