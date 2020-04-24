@@ -4,7 +4,7 @@ env:
 language: php
 
 php:
-- 7.1
+- 7.2
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -15,4 +15,4 @@ script:
   - composer test -- --coverage-clover=coverage.xml
 after_script:
   - ./cc-test-reporter format-coverage -t clover ./coverage.xml
-  - ./cc-test-reporter upload-coverage
+  - ./cc-test-reporter upload-coverag
