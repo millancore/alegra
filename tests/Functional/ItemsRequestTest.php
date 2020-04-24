@@ -4,9 +4,10 @@ use Alegra\Alegra;
 use Alegra\Entity\BaseItem;
 use Alegra\Entity\Inventory;
 use Alegra\Entity\ItemCategory;
-use Alegra\Http\TestHttpClient;
 use Alegra\Support\Collection;
 use Alegra\Support\Facade\Items;
+use Alegra\Tests\Helpers\TestHttpClient;
+use Alegra\Tests\Helpers\TestLogger;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
@@ -14,16 +15,21 @@ class ItemsRequestTest extends TestCase
 {
     /** @var TestHttpClient */
     private $client;
+    private $logger;
 
     public function setUp() : void
     {
+        /** @var Alegra */
        $alegra = Alegra::setCredentials([
             'email' => 'test@alegra.com',
             'token' => 'tokeTestAlegraApiAccess'
         ]);
 
         $this->client = new TestHttpClient();
+        $this->logger = new TestLogger();
+
         $alegra->setClient($this->client);
+        $alegra->setLogger($this->logger);
     }
 
     public function testGetItemById()
@@ -39,7 +45,11 @@ class ItemsRequestTest extends TestCase
 
         /**@var BaseItem */
         $product = Items::get(12);
+        
+        # Validate Logger
+        $this->assertTrue($this->logger->isLogged());
 
+        # Validate Entities 
         $this->assertInstanceOf(BaseItem::class, $product);
         $this->assertInstanceOf(Inventory::class, $product->getInventory());
         $this->assertInstanceOf(ItemCategory::class, $product->getItemCategory());

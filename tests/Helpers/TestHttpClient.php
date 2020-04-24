@@ -1,6 +1,6 @@
 <?php
 
-namespace Alegra\Http;
+namespace Alegra\Tests\Helpers;
 
 use Alegra\Contract\HttpClientInterface;
 use GuzzleHttp\Exception\RequestException;

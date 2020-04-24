@@ -2,7 +2,9 @@
 
 namespace Alegra\Contract;
 
-interface ResponseInterface
+use JsonSerializable;
+
+interface ResponseInterface extends ArrayableInterface, JsonSerializable
 {
     public function getStatusCode();
     public function getHeaders();

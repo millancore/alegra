@@ -3,9 +3,12 @@
 namespace Alegra\Message;
 
 use Alegra\Contract\ResponseInterface;
+use Alegra\Support\Traits\ArrayableTrait;
 
 class Response implements ResponseInterface
 {
+   use ArrayableTrait;
+
    protected $status;
    protected $headers;
    protected $body;
@@ -34,6 +37,11 @@ class Response implements ResponseInterface
    public function getBody()
    {
        return $this->body;
+   }
+
+   public function jsonSerialize()
+   {
+       return $this->toArray();
    }
    
 }

@@ -6,9 +6,9 @@ use Alegra\Contract\CarrierInterface;
 use Alegra\Contract\HttpClientInterface;
 use Alegra\Contract\RequestInterface;
 use Alegra\Contract\ResponseInterface;
+use Alegra\Event\EventManager;
 use Alegra\Exception\HttpException;
 use Alegra\Message\Response;
-use Laminas\EventManager\EventManagerInterface;
 
 class RestCarrier implements CarrierInterface
 {
@@ -17,7 +17,7 @@ class RestCarrier implements CarrierInterface
 
     public function __construct(
          HttpClientInterface $client,
-         EventManagerInterface $eventManager
+         EventManager $eventManager
     )
     {
         $this->client = $client;
@@ -33,8 +33,8 @@ class RestCarrier implements CarrierInterface
      */
     public function send(RequestInterface $request)
     {
-        #Launch Request Event
-        $this->eventManager->trigger('http.request', null, [$request]);
+        #Dispatch Request Event
+        $this->eventManager->dispatch('alegra.request', [$request]);
         try {
             /** @var ResponseInterface */
             $response = $this->client->request(
@@ -43,19 +43,26 @@ class RestCarrier implements CarrierInterface
                 $request->getOptions()
             );
         } catch (HttpException $exception) {
-            #Launch Error Event
-            $this->eventManager->trigger('http.error', null, [$exception, $request]);
+            #Dispatch Error Event
+            $this->eventManager->dispatch('alegra.error',
+                 [$exception, $request->getRequestId()]
+            );
+
             throw $exception;
         }
-
-        #Launch Response Event
-        $this->eventManager->trigger('http.response', null, [$request, $response]);
         
-        return new Response(
+        $response = new Response(
             $response->getStatusCode(),
             $response->getHeaders(),
             (string) $response->getBody()
         );
+
+        #Dispatch Response Event
+        $this->eventManager->dispatch('alegra.response', 
+            [$response, $request->getRequestId()]
+        );
+
+        return $response;
     }
 
 }

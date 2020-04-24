@@ -32,16 +32,4 @@ class AlegraTest extends TestCase
         $this->assertInstanceOf(Alegra::class, Alegra::getInstance());
     }
 
-    public function testSetPSRLogger()
-    {
-        #Destroy previous instance of Alegra, created by other tests
-        Alegra::destroy();
-
-        $alegra = Alegra::setCredentials([
-            'email' => 'test@alegra.com',
-            'token' => 'tokeTestAlgraApiAccess'
-        ]);
-
-        $alegra->setLogger(new NullLogger());
-    }
 }
