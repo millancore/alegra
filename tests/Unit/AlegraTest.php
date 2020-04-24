@@ -3,12 +3,16 @@
 use Alegra\Alegra;
 use Alegra\Exception\AlegraException;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 
 class AlegraTest extends TestCase
 {
 
     public function testInvalidGetInstance()
     {
+        # Destroy previous instance of Alegra, created by other tests
+        Alegra::destroy();
+
         $this->expectException(AlegraException::class);
         $this->expectExceptionMessage('You must configure Alegra::setCredentials');
 
@@ -17,6 +21,9 @@ class AlegraTest extends TestCase
 
     public function testInstanceAlegraSDK()
     {
+        #Destroy previous instance of Alegra, created by other tests
+        Alegra::destroy();
+
         Alegra::setCredentials([
             'email' => 'test@alegra.com',
             'token' => 'tokeTestAlgraApiAccess'
@@ -25,7 +32,16 @@ class AlegraTest extends TestCase
         $this->assertInstanceOf(Alegra::class, Alegra::getInstance());
     }
 
+    public function testSetPSRLogger()
+    {
+        #Destroy previous instance of Alegra, created by other tests
+        Alegra::destroy();
 
+        $alegra = Alegra::setCredentials([
+            'email' => 'test@alegra.com',
+            'token' => 'tokeTestAlgraApiAccess'
+        ]);
 
+        $alegra->setLogger(new NullLogger());
+    }
 }
-

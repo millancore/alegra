@@ -3,6 +3,7 @@
 namespace Alegra\Support\Facade;
 
 use Alegra\Alegra;
+use Alegra\Auth\Authentication;
 
 abstract class Facade 
 {
@@ -13,6 +14,7 @@ abstract class Facade
      */
     abstract static function getClient() : string;
 
+    
     /**
      * Resolve Client Instance
      *
@@ -20,8 +22,26 @@ abstract class Facade
      */
     public static function resolveClient()
     {
-        $classClient = static::getClient();
-        return new $classClient(Alegra::getInstance()->getCarrier());
+        $clientClassName = static::getClient();
+        
+        /** @var Alegra */
+        $alegra = Alegra::getInstance();
+
+        if ($alegra->getClient($clientClassName)) {
+            return $alegra->getClient($clientClassName);
+        }
+
+        $client = new $clientClassName(
+            $alegra->getCarrier(),
+            new Authentication(
+                $alegra->getConfig()->email,
+                $alegra->getConfig()->token
+            )
+        );
+
+        $alegra->registerClient($clientClassName, $client);
+
+        return $client;
     }
 
      /**

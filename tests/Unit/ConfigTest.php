@@ -3,8 +3,6 @@
 use Alegra\Config;
 use Alegra\Exception\ConfigException;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 
 class ConfigTest extends TestCase
 {
@@ -13,21 +11,7 @@ class ConfigTest extends TestCase
         $this->expectException(ConfigException::class);
         $this->expectExceptionMessage('The required options "email", "token" are missing.');
 
-        $config = new Config([]);
-    }
-
-    public function testInvalidLoggerInstance()
-    {
-
-        $this->expectException(ConfigException::class);
-        $this->expectExceptionMessage('The option "logger" with value stdClass is invalid.');
-
-        $config = new Config([
-            'email' => 'alegra@test.com',
-            'token' => 'tokeTestAlgraApiAccess',
-            'logger' => new stdClass
-        ]);
-
+        new Config([]);
     }
 
     public function testInvalidEmailFormat()
@@ -35,7 +19,7 @@ class ConfigTest extends TestCase
         $this->expectException(ConfigException::class);
         $this->expectExceptionMessage('The option "email" with value "alegra@test" is invalid.');
 
-        $config = new Config([
+        new Config([
             'email' => 'alegra@test',
             'token' => 'tokeTestAlgraApiAccess',
         ]);
@@ -49,11 +33,9 @@ class ConfigTest extends TestCase
 
         $config = new Config([
             'email' => $email,
-            'token' => $token,
-            'logger' => new NullLogger
+            'token' => $token
         ]);
 
-        $this->assertInstanceOf(LoggerInterface::class, $config->logger);
         $this->assertEquals($config->email, $email);
         $this->assertEquals($config->token, $token);
     }

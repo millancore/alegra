@@ -18,7 +18,9 @@ class ItemsClient extends Client
     public function get(int $id)
     {
         $response = $this->carrier->send(
-            Request::get('/items/'.$id)->json()
+            Request::get('/items/'.$id)
+                    ->addAuth($this->auth)
+                    ->addJsonHeaders()
         );
 
         return EntityFactory::fromJson($response->getBody(), BaseItem::class);

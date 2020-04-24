@@ -2,11 +2,10 @@
 
 namespace Alegra\Event;
 
-use Laminas\EventManager\EventInterface;
 use Laminas\EventManager\EventManagerInterface;
 use Psr\Log\LoggerInterface;
 
-class LogListener
+class LogListener extends LoggerInterface
 {
     private $logger;
 
@@ -17,14 +16,24 @@ class LogListener
 
     public function attach(EventManagerInterface $eventManager)
     {
-        $eventManager->attach('http.request', [$this, 'logRequest']);
-        $eventManager->attach('http.error', [$this, 'LogError']);
-        $eventManager->attach('http.response', [$this, 'LogResponse']);
+        $eventManager->attach('http.request', [$this, 'onRequest']);
+        $eventManager->attach('http.error', [$this, 'onError']);
+        $eventManager->attach('http.response', [$this, 'onResponse']);
     }
 
-    public function logRequest(EventInterface $event)
+    public function onRequest($event)
     {
         var_dump($event);
+    }
+
+    public function onError($event)
+    {
+
+    }
+
+    public function onResponse($event)
+    {
+
     }
 
 }
