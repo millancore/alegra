@@ -70,10 +70,10 @@ $product = Items::getByName(12);
 
 Aqui una lista de los Facades disponibles, cada uno cuenta con la lista de metodos asi como ejemplos sencillos de uso.
 
- - Productos y Servicios [Items]()
- - Categorias [Categories]()
- - Bodegas [Warehouses]()
- - Lista de Precios [PriceLists]()
+ - Productos y Servicios [Items](https://github.com/millancore/alegra/blob/master/examples/Items.md)
+ - Categorias [Categories](https://github.com/millancore/alegra/blob/master/examples/Categories.md)
+ - Bodegas [Warehouses](https://github.com/millancore/alegra/blob/master/examples/Warehouses.md)
+ - Lista de Precios [PriceLists](https://github.com/millancore/alegra/blob/master/examples/PriceLists.md)
 
  ### Entidades
 
@@ -105,7 +105,7 @@ $jsonProduct = json_encode($product);
 ### Colecciones
 
 Algunas propiedades del las entidades son colecciones de otras, las colecciones son objetos iterables
-que nos permiten recorrerlos para hacer uso de Entidades almacenadas.
+que nos permiten recorrerlos para hacer uso de las entidades almacenadas.
 
 Iterar
 ```php
