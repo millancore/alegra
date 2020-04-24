@@ -51,9 +51,9 @@ class ItemsRequestTest extends TestCase
 
         # Validate Entities 
         $this->assertInstanceOf(BaseItem::class, $product);
-        $this->assertInstanceOf(Inventory::class, $product->getInventory());
-        $this->assertInstanceOf(ItemCategory::class, $product->getItemCategory());
-        $this->assertInstanceOf(Collection::class, $product->getPrice());
-        $this->assertInstanceOf(Collection::class, $product->getTax());
+        $this->assertInstanceOf(Inventory::class, $product->inventory);
+        $this->assertInstanceOf(ItemCategory::class, $product->itemCategory);
+        $this->assertInstanceOf(Collection::class, $product->price);
+        $this->assertInstanceOf(Collection::class, $product->tax);
     }
 }

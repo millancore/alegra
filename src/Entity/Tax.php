@@ -11,14 +11,6 @@ class Tax extends Entity
     protected $status;
 
     /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set the value of id
      *
      * @return  self
@@ -28,14 +20,6 @@ class Tax extends Entity
         $this->id = $id;
 
         return $this;
-    }
-
-    /**
-     * Get the value of name
-     */ 
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
@@ -51,14 +35,6 @@ class Tax extends Entity
     }
 
     /**
-     * Get the value of percentage
-     */ 
-    public function getPercentage()
-    {
-        return $this->percentage;
-    }
-
-    /**
      * Set the value of percentage
      *
      * @return  self
@@ -71,14 +47,6 @@ class Tax extends Entity
     }
 
     /**
-     * Get the value of description
-     */ 
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
      * Set the value of description
      *
      * @return  self
@@ -88,14 +56,6 @@ class Tax extends Entity
         $this->description = $description;
 
         return $this;
-    }
-
-    /**
-     * Get the value of status
-     */ 
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**

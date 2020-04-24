@@ -30,14 +30,6 @@ class Inventory extends Entity implements MappableInterface
     }
 
     /**
-     * Get the value of unit
-     */ 
-    public function getUnit()
-    {
-        return $this->unit;
-    }
-
-    /**
      * Set the value of unit
      *
      * @return  self
@@ -47,14 +39,6 @@ class Inventory extends Entity implements MappableInterface
         $this->unit = $unit;
 
         return $this;
-    }
-
-    /**
-     * Get the value of availableQuantity
-     */ 
-    public function getAvailableQuantity()
-    {
-        return $this->availableQuantity;
     }
 
     /**
@@ -69,13 +53,6 @@ class Inventory extends Entity implements MappableInterface
         return $this;
     }
 
-    /**
-     * Get the value of unitCost
-     */ 
-    public function getUnitCost()
-    {
-        return $this->unitCost;
-    }
 
     /**
      * Set the value of unitCost
@@ -87,14 +64,6 @@ class Inventory extends Entity implements MappableInterface
         $this->unitCost = $unitCost;
 
         return $this;
-    }
-
-    /**
-     * Get the value of initialQuantity
-     */ 
-    public function getInitialQuantity()
-    {
-        return $this->initialQuantity;
     }
 
     /**
@@ -111,10 +80,9 @@ class Inventory extends Entity implements MappableInterface
 
 
     /**
-     * Set the value of warehouses
+     * Set the collection of warehouses
      *
      * @param  Collection  $warehouses
-     *
      * @return  self
      */ 
     public function setWarehouses(Collection $warehouses)
@@ -125,6 +93,12 @@ class Inventory extends Entity implements MappableInterface
     }
 
 
+    /**
+     * Add Warehose to Inventory
+     *
+     * @param Warehouse $warehouse
+     * @return void
+     */
     public function addWarehouse(Warehouse $warehouse)
     {
         $this->warehouses->add($warehouse);

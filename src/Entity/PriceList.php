@@ -9,14 +9,6 @@ class PriceList extends Entity
     protected $price;
     
     /**
-     * Get the value of idPriceList
-     */ 
-    public function getIdPriceList()
-    {
-        return $this->idPriceList;
-    }
-
-    /**
      * Set the value of idPriceList
      *
      * @return  self
@@ -27,15 +19,7 @@ class PriceList extends Entity
 
         return $this;
     }
-
-    /**
-     * Get the value of name
-     */ 
-    public function getName()
-    {
-        return $this->name;
-    }
-
+    
     /**
      * Set the value of name
      *
@@ -46,14 +30,6 @@ class PriceList extends Entity
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * Get the value of price
-     */ 
-    public function getPrice()
-    {
-        return $this->price;
     }
 
     /**

@@ -72,14 +72,7 @@ class BaseItem extends Entity implements MappableInterface
         $this->subitems = new Collection;
     }
 
-    /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
-
+  
     /**
      * Set the value of id
      *
@@ -91,13 +84,6 @@ class BaseItem extends Entity implements MappableInterface
         return $this;
     }
 
-    /**
-     * Get the value of name
-     */ 
-    public function getName()
-    {
-        return $this->name;
-    }
 
     /**
      * Set the value of name
@@ -111,14 +97,6 @@ class BaseItem extends Entity implements MappableInterface
     }
 
     /**
-     * Get the value of decription
-     */ 
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
      * Set the value of decription
      *
      * @return  self
@@ -129,13 +107,6 @@ class BaseItem extends Entity implements MappableInterface
         return $this;
     }
 
-    /**
-     * Get the value of reference
-     */ 
-    public function getReference()
-    {
-        return $this->reference;
-    }
 
     /**
      * Set the value of reference
@@ -148,15 +119,6 @@ class BaseItem extends Entity implements MappableInterface
         return $this;
     }
 
-    /**
-     * Get the value of price
-     *
-     * @return  Collection
-     */ 
-    public function getPrice()
-    {
-        return $this->price;
-    }
 
     /**
      * Set the value of price
@@ -183,15 +145,6 @@ class BaseItem extends Entity implements MappableInterface
     }
 
     /**
-     * Get the value of tax
-     * @return  Collection
-     */ 
-    public function getTax()
-    {
-        return $this->tax;
-    }
-
-    /**
      * Set the value of tax
      *
      * @param Collection $collectionTax
@@ -214,15 +167,6 @@ class BaseItem extends Entity implements MappableInterface
         return $this;
     }
 
-    /**
-     * Get the value of category
-     *
-     * @return  Category
-     */ 
-    public function getCategory()
-    {
-        return $this->category;
-    }
 
     /**
      * Set the value of category
@@ -236,16 +180,6 @@ class BaseItem extends Entity implements MappableInterface
         $this->category = $category;
 
         return $this;
-    }
-
-    /**
-     * Get the value of inventory
-     *
-     * @return  Inventory
-     */ 
-    public function getInventory()
-    {
-        return $this->inventory;
     }
 
     /**
@@ -263,16 +197,6 @@ class BaseItem extends Entity implements MappableInterface
     }
 
     /**
-     * Get the value of status
-     *
-     * @return  String
-     */ 
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
      * Set the value of status
      *
      * @param String $status
@@ -284,16 +208,6 @@ class BaseItem extends Entity implements MappableInterface
         $this->status = $status;
 
         return $this;
-    }
-
-    /**
-     * Get the value of subitems
-     *
-     * @return SubItem
-     */ 
-    public function getSubitems()
-    {
-        return $this->subitems;
     }
 
     /**
@@ -311,16 +225,6 @@ class BaseItem extends Entity implements MappableInterface
     }
 
     /**
-     * Get the value of kitWarehouse
-     *
-     * @return Warehouse
-     */ 
-    public function getKitWarehouse()
-    {
-        return $this->kitWarehouse;
-    }
-
-    /**
      * Set the value of kitWarehouse
      *
      * @param Warehouse $kitWarehouse
@@ -332,16 +236,6 @@ class BaseItem extends Entity implements MappableInterface
         $this->kitWarehouse = $kitWarehouse;
 
         return $this;
-    }
-
-    /**
-     * Get the value of itemCategory
-     *
-     * @return  ItemCategory
-     */ 
-    public function getItemCategory()
-    {
-        return $this->itemCategory;
     }
 
     /**

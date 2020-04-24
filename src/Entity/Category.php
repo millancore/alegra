@@ -8,14 +8,6 @@ class Category extends Entity
     protected $name;
 
     /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set the value of id
      *
      * @return  self
@@ -25,14 +17,6 @@ class Category extends Entity
         $this->id = $id;
 
         return $this;
-    }
-
-    /**
-     * Get the value of name
-     */ 
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**

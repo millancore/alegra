@@ -38,5 +38,7 @@ class ConfigTest extends TestCase
 
         $this->assertEquals($config->email, $email);
         $this->assertEquals($config->token, $token);
+        $this->assertNull($config->invalid);
     }
+
 }

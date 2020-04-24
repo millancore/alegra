@@ -17,14 +17,6 @@ class Warehouse extends Entity
     protected $maxQuantity;
 
     /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set the value of id
      *
      * @return  self
@@ -36,13 +28,6 @@ class Warehouse extends Entity
         return $this;
     }
 
-    /**
-     * Get the value of name
-     */ 
-    public function getName()
-    {
-        return $this->name;
-    }
 
     /**
      * Set the value of name
@@ -54,14 +39,6 @@ class Warehouse extends Entity
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * Get the value of observations
-     */ 
-    public function getObservations()
-    {
-        return $this->observations;
     }
 
     /**
@@ -77,14 +54,6 @@ class Warehouse extends Entity
     }
 
     /**
-     * Get the value of isDefault
-     */ 
-    public function getIsDefault()
-    {
-        return $this->isDefault;
-    }
-
-    /**
      * Set the value of isDefault
      *
      * @return  self
@@ -96,13 +65,6 @@ class Warehouse extends Entity
         return $this;
     }
 
-    /**
-     * Get the value of address
-     */ 
-    public function getAddress()
-    {
-        return $this->address;
-    }
 
     /**
      * Set the value of address
@@ -116,13 +78,6 @@ class Warehouse extends Entity
         return $this;
     }
 
-    /**
-     * Get the value of status
-     */ 
-    public function getStatus()
-    {
-        return $this->status;
-    }
 
     /**
      * Set the value of status
@@ -136,13 +91,6 @@ class Warehouse extends Entity
         return $this;
     }
 
-    /**
-     * Get the value of initialQuantity
-     */ 
-    public function getInitialQuantity()
-    {
-        return $this->initialQuantity;
-    }
 
     /**
      * Set the value of initialQuantity
@@ -154,14 +102,6 @@ class Warehouse extends Entity
         $this->initialQuantity = $initialQuantity;
 
         return $this;
-    }
-
-    /**
-     * Get the value of availableQuantity
-     */ 
-    public function getAvailableQuantity()
-    {
-        return $this->availableQuantity;
     }
 
     /**
@@ -177,14 +117,6 @@ class Warehouse extends Entity
     }
 
     /**
-     * Get the value of minQuantity
-     */ 
-    public function getMinQuantity()
-    {
-        return $this->minQuantity;
-    }
-
-    /**
      * Set the value of minQuantity
      *
      * @return  self
@@ -194,14 +126,6 @@ class Warehouse extends Entity
         $this->minQuantity = $minQuantity;
 
         return $this;
-    }
-
-    /**
-     * Get the value of maxQuantity
-     */ 
-    public function getMaxQuantity()
-    {
-        return $this->maxQuantity;
     }
 
     /**

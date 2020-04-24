@@ -10,14 +10,6 @@ class SubItem extends Entity
     protected $item;
 
     /**
-     * Get the value of quantity
-     */ 
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
-
-    /**
      * Set the value of quantity
      *
      * @return  self
@@ -27,14 +19,6 @@ class SubItem extends Entity
         $this->quantity = $quantity;
 
         return $this;
-    }
-
-    /**
-     * Get the value of item
-     */ 
-    public function getItem()
-    {
-        return $this->item;
     }
 
     /**

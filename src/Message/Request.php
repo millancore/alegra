@@ -17,12 +17,12 @@ class Request implements RequestInterface
     # this is used to associate responses and errors in logs
     protected $requestId;
 
-    public function __construct(string $uri, string $method, array $options = [])
+    public function __construct(string $uri, string $method, array $options = [], $requestId = null)
     {
         $this->uri = $uri;
         $this->method = strtoupper($method);
         $this->options = $options;
-        $this->requestId = uniqid();
+        $this->setRequesId($requestId);
     }
 
     public function getUri(): string
@@ -40,6 +40,16 @@ class Request implements RequestInterface
         return $this->options;   
     }
 
+    public function setRequesId( string $requestId = null)
+    {
+        if (is_null($requestId)) {
+            $this->requestId = uniqid();
+            return;
+        }
+
+        $this->requestId = $requestId;
+    }
+
     public function getRequestId()
     {
         return $this->requestId;
@@ -47,7 +57,7 @@ class Request implements RequestInterface
 
     public function addJsonHeaders()
     {
-        $this->options['headers'][] = [
+        $this->options['headers'] = [
             'Accept' => 'application/json',
             'Content-type' => 'application/json',
         ];
@@ -72,9 +82,9 @@ class Request implements RequestInterface
         }
     }
 
-    public static function get(string $uri, array $options = [])
+    public static function get(string $uri, array $options = [], $requestId = null)
     {
-        return new self($uri, 'GET', $options);
+        return new self($uri, 'GET', $options, $requestId);
     }
 
     public function jsonSerialize()

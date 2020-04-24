@@ -19,6 +19,17 @@ abstract class Entity implements EntityInterface
        $this->fill($attributes);
    }
 
+   /**
+    * Dinamic get Entity propierties
+    *
+    * @param string $name
+    * @return void
+    */
+   public function __get($name)
+   {
+       return $this->{$name};
+   }
+
    public function jsonSerialize()
    {
       return $this->toArray();

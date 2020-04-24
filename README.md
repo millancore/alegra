@@ -5,7 +5,7 @@
 <a href="https://codeclimate.com/github/millancore/alegra/maintainability"><img src="https://api.codeclimate.com/v1/badges/10674e248e908aedc7e4/maintainability" /></a>
 <a href="https://codeclimate.com/github/millancore/alegra/test_coverage"><img src="https://api.codeclimate.com/v1/badges/10674e248e908aedc7e4/test_coverage" /></a>
 
-**Importante** Este SDK solo cuenta con metodos para administrar Inventario a traves de la API de Alegra, si usted necesita usar otros endpoints, este SDK fue creado modularmente lo que le permitira usarlo como marco de trabajo facilitandole enormemente la integracion.
+**Importante** Este SDK solo cuenta con metodos para administrar **Inventario** a traves de la API de Alegra, si usted necesita usar otros endpoints, este SDK fue creado modularmente lo que le permitira usarlo como marco de trabajo facilitandole enormemente la integracion.
 
 Pongase en contacto conmigo, estare encantado de indicarle como agregar nuevas funcionalidades. 
 
