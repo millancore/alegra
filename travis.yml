@@ -1,0 +1,18 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=ef5df9195b74a0a27ddef550f3bb4cda8d491a08aff3f55364d1dbd036801c5e
+language: php
+
+php:
+- 7.1
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - composer install
+  - composer test -- --coverage-clover=coverage.xml
+after_script:
+  - ./cc-test-reporter format-coverage -t clover ./coverage.xml
+  - ./cc-test-reporter upload-coverage
