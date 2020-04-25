@@ -2,12 +2,12 @@
 
 namespace Alegra\Support\Facade;
 
-use Alegra\Client\ItemsClient;
+use Alegra\Client\ItemClient;
 
-class Items extends Facade
+class Item extends Facade
 {
     static function getClient(): string
     {
-        return ItemsClient::class;
+        return ItemClient::class;
     }
 }

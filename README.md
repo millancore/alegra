@@ -62,25 +62,25 @@ Asi que para traer in producto por Id es tan simple como esto.
 
 ```php
 
-use Alegra\Support\Facade\Items;
+use Alegra\Support\Facade\Item;
 
-$product = Items::getByName(12);
+$product = Item::getByName(12);
 
 ```
 
 Aqui una lista de los Facades disponibles, cada uno cuenta con la lista de metodos asi como ejemplos sencillos de uso.
 
- - Productos y Servicios [Items](https://github.com/millancore/alegra/blob/master/examples/Items.md)
- - Categorias [Categories](https://github.com/millancore/alegra/blob/master/examples/Categories.md)
- - Bodegas [Warehouses](https://github.com/millancore/alegra/blob/master/examples/Warehouses.md)
- - Lista de Precios [PriceLists](https://github.com/millancore/alegra/blob/master/examples/PriceLists.md)
+ - Productos y Servicios [Item](https://github.com/millancore/alegra/blob/master/examples/Item.md)
+ - Categorias [Category](https://github.com/millancore/alegra/blob/master/examples/Category.md)
+ - Bodegas [Warehouse](https://github.com/millancore/alegra/blob/master/examples/Warehouse.md)
+ - Lista de Precios [PriceList](https://github.com/millancore/alegra/blob/master/examples/PriceList.md)
 
  ### Entidades
 
 Cuando hacemos llamadas a la API de Alegra a traves de este SDK obtenemos entidades, podemos acceder a las propiedades de cada entidad de la siguiente manera.
 
 ```php
-$product = Items::getByName(12);
+$product = Item::getByName(12);
 
 $product->id
 $product->name

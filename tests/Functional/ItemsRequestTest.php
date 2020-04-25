@@ -5,7 +5,7 @@ use Alegra\Entity\BaseItem;
 use Alegra\Entity\Inventory;
 use Alegra\Entity\ItemCategory;
 use Alegra\Support\Collection;
-use Alegra\Support\Facade\Items;
+use Alegra\Support\Facade\Item;
 use Alegra\Tests\Helpers\TestHttpClient;
 use Alegra\Tests\Helpers\TestLogger;
 use GuzzleHttp\Psr7\Response;
@@ -44,7 +44,7 @@ class ItemsRequestTest extends TestCase
         );
 
         /**@var BaseItem */
-        $product = Items::get(12);
+        $product = Item::get(12);
         
         # Validate Logger
         $this->assertTrue($this->logger->isLogged());

@@ -6,7 +6,7 @@ use Alegra\Entity\BaseItem;
 use Alegra\Entity\EntityFactory;
 use Alegra\Message\Request;
 
-class ItemsClient extends Client
+class ItemClient extends Client
 {
 
     /**
