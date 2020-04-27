@@ -7,11 +7,9 @@
 
 **Importante!!** Este SDK solo cuenta con metodos para administrar **Inventario** a traves de la API de Alegra, si usted necesita usar otros endpoints, este SDK fue creado modularmente lo que le permitira usarlo como marco de trabajo facilitandole enormemente la integracion.
 
-Pongase en contacto conmigo, estare encantado de indicarle como agregar nuevas funcionalidades. 
-
 ## Alegra SDK
 
-Este es un SDK para para la API de [alegra.com]() que busca simplificar la integracion con proyectos en PHP.
+Este es un SDK para para la API de [https://alegra.com]() que busca simplificar la integracion con proyectos en PHP.
 
 ## Instalacion  
 **PHP 7.2 o superior**
@@ -23,13 +21,15 @@ composer require millancore/alegra
 ## Configuracion 
 
 ```php
+use Alegra\Alegra;
+
 $alegra = Alegra::setCredentials([
     'email' => 'alegrauser@email.com',
     'token' => 'tokenAuthApiAccess'
 ]);
 ```
 
-#### Logger
+#### Logger (Opcional)
 
 Es posible que se desee tener logs de la interacion con la API, para ello puede setear un Logger que cumpla con PSR-3. (Monolog, Laravel, Symfony etc)
 
@@ -39,7 +39,7 @@ $alegra->setLogger($PSRLogger);
 
 ```
 
-#### Eventos
+#### Eventos (Opcional)
 
 Los procesos mas criticos dentro de este SDK [Request, Error, Response] lanzan eventos, usted puede agregar un Listener para estos eventos de una manera sencilla permitiendole tomar deciciones en cada caso. (notificaciones, stats, error tracking etc.)
 
@@ -58,7 +58,7 @@ Cada evento despachado cuenta con dos metodos pricipales para acceder al conteni
 Alegra cuenta con una variedad de endpoints, lo mas probable es que necesite hacer uso de estos desde diferentes puntos, en este SDK hemos pensando en facilitar esta tarea implementando
 **Facades** para cada grupo.
 
-Asi que para traer in producto por Id es tan simple como esto.
+Asi que para traer un producto por Id es tan simple como esto.
 
 ```php
 
@@ -127,4 +127,22 @@ $arrayPriceList = $product->price->toArray();
 Json
 ```php
 $jsonPriceList = json_encode($product->price); 
+```
+
+## Manejo de Excepciones
+
+Este SDK maneja una serie de excepciones segun diferentes posibles casos de error o validacion,
+sin embargo todas extienden de `Alegra\Exception\AlegraException` lo que simplifica el manejo 
+de excepciones.
+
+```php
+use Alegra\Support\Facade\Item;
+use Alegra\Exception\AlegraException;
+
+try {
+    $product = Item::getByName(12);
+} catch (AlegraException $exception) {
+    #....
+}
+
 ```
