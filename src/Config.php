@@ -25,7 +25,7 @@ class Config
     private function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefined('logger', 'timeout');
-        $resolver->setRequired(['email', 'token']);
+        $resolver->setRequired(['email', 'token', 'country']);
 
         $resolver->setDefaults([
             'api' => 'https://api.alegra.com/api/v1/',

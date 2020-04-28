@@ -1,0 +1,8 @@
+{
+    "id" : "12",
+    "idParent" : "1",
+    "name" : "Ventas",
+    "description" : "ingresos principales.",
+    "type" : "income",
+    "readOnly" : false
+  }

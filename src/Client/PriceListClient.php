@@ -2,7 +2,10 @@
 
 namespace Alegra\Client;
 
+use Alegra\Entity\EntityFactory;
 use Alegra\Entity\PriceList;
+use Alegra\Message\Request;
+use Alegra\Validation\Validator;
 
 class PriceListClient extends Client
 {   
@@ -15,7 +18,13 @@ class PriceListClient extends Client
      */
     public function getById(int $id)
     {
+        $response = $this->carrier->send(
+            Request::get('/price-lists/'.$id)
+                    ->addAuth($this->auth)
+                    ->addJsonHeaders()
+        );
 
+        return EntityFactory::fromJson($response->getBody(), PriceList::class);
     }
 
     /**
@@ -24,47 +33,20 @@ class PriceListClient extends Client
      * @param array $options
      * @return Collection
      */
-    public function getList(array $options)
+    public function getList(array $options = [])
     {
+        $validator = new Validator($options, [
+            'query' => ['type' => 'string']
+        ]);
 
+        $response = $this->carrier->send(
+            Request::get('/price-lists/')
+                   ->addQueryParams($validator->validate())
+                   ->addAuth($this->auth)
+                   ->addJsonHeaders()
+        );
+
+        return EntityFactory::fromJson($response->getBody(), PriceList::class, true);
     }
-
-
-    /**
-     * Save PriceList
-     *
-     * @param PriceList $priceList
-     * @return PriceList
-     */
-    public function save(PriceList $priceList)
-    {
-
-    }
-
-
-    /**
-     * Update PriceList
-     *
-     * @param PriceList $priceList
-     * @return void
-     */
-    public function update(PriceList $priceList)
-    {
-
-    }
-
-
-
-    /**
-     * Delete PriceList
-     *
-     * @param int|PriceList $priceList
-     * @return Response
-     */
-    public function delete($priceList)
-    {
-
-    }
-
-
+    
 }

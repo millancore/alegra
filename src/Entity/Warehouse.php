@@ -71,7 +71,7 @@ class Warehouse extends Entity
      *
      * @return  self
      */ 
-    public function setAddress(string $address)
+    public function setAddress(?string $address)
     {
         $this->address = $address;
 

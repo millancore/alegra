@@ -1,0 +1,21 @@
+[
+    {
+      "id": "1",
+      "name": "General",
+      "status": "active",
+      "type": "amount"
+    },
+    {
+      "id": "2",
+      "name": "Precios mayorista",
+      "status": "active",
+      "type": "percentage",
+      "percentage": "10.00"
+    },
+    {
+      "id": "3",
+      "name": "Precios distribuidores",
+      "status": "active",
+      "type": "amount"
+    }
+]

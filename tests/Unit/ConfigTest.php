@@ -2,6 +2,7 @@
 
 use Alegra\Config;
 use Alegra\Exception\ConfigException;
+use Alegra\Support\Country;
 use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase
@@ -9,7 +10,7 @@ class ConfigTest extends TestCase
     public function testMissingOptions()
     {
         $this->expectException(ConfigException::class);
-        $this->expectExceptionMessage('The required options "email", "token" are missing.');
+        $this->expectExceptionMessage('The required options "country", "email", "token" are missing.');
 
         new Config([]);
     }
@@ -22,6 +23,7 @@ class ConfigTest extends TestCase
         new Config([
             'email' => 'alegra@test',
             'token' => 'tokeTestAlgraApiAccess',
+            'country' => Country::COL
         ]);
 
     }
@@ -33,11 +35,13 @@ class ConfigTest extends TestCase
 
         $config = new Config([
             'email' => $email,
-            'token' => $token
+            'token' => $token,
+            'country' => Country::COL
         ]);
 
         $this->assertEquals($config->email, $email);
         $this->assertEquals($config->token, $token);
+        $this->assertEquals('COL', $config->country);
         $this->assertNull($config->invalid);
     }
 

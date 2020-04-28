@@ -6,7 +6,7 @@ use Alegra\Contract\MappableInterface;
 use Alegra\Support\Collection;
 use Alegra\Support\EntityMapper;
 
-class BaseItem extends Entity implements MappableInterface
+class Item extends Entity implements MappableInterface
 {
     protected $id;
     protected $name;
@@ -14,7 +14,7 @@ class BaseItem extends Entity implements MappableInterface
     protected $reference;
 
     /**
-     * @EntityMapper(type="Collection", entity="PriceList")
+     * @EntityMapper(type="Collection", entity="Price")
      * @var Collection
      */
     protected $price;

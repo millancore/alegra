@@ -2,8 +2,8 @@
 
 use Alegra\Alegra;
 use Alegra\Exception\AlegraException;
+use Alegra\Support\Country;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\NullLogger;
 
 class AlegraTest extends TestCase
 {
@@ -26,7 +26,8 @@ class AlegraTest extends TestCase
 
         Alegra::setCredentials([
             'email' => 'test@alegra.com',
-            'token' => 'tokeTestAlgraApiAccess'
+            'token' => 'tokeTestAlgraApiAccess',
+            'country' => Country::COL
         ]);
 
         $this->assertInstanceOf(Alegra::class, Alegra::getInstance());

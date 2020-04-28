@@ -4,22 +4,24 @@ namespace Alegra\Entity;
 
 class PriceList extends Entity
 {
-    protected $idPriceList;
+    protected $id;
     protected $name;
-    protected $price;
-    
+    protected $status;
+    protected $type;
+    protected $percentage;
+
     /**
-     * Set the value of idPriceList
+     * Set the value of id
      *
      * @return  self
      */ 
-    public function setIdPriceList($idPriceList)
+    public function setId($id)
     {
-        $this->idPriceList = $idPriceList;
+        $this->id = $id;
 
         return $this;
     }
-    
+
     /**
      * Set the value of name
      *
@@ -33,13 +35,37 @@ class PriceList extends Entity
     }
 
     /**
-     * Set the value of price
+     * Set the value of status
      *
      * @return  self
      */ 
-    public function setPrice($price)
+    public function setStatus($status)
     {
-        $this->price = $price;
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of type
+     *
+     * @return  self
+     */ 
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of percentage
+     *
+     * @return  self
+     */ 
+    public function setPercentage($percentage)
+    {
+        $this->percentage = $percentage;
 
         return $this;
     }

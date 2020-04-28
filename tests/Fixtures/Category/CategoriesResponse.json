@@ -1,0 +1,36 @@
+[
+    { 
+      "id" : "3",
+      "idParent" : "1",
+      "name" : "Ventas",
+      "description" : "Bajo Esta categoría se encuentran todos los ingresos principales.",
+      "type" : "income",
+      "readOnly" : false,
+      "categoryRule": {
+          "id": "1",
+          "name": "Activos",
+          "key": "ASSETS"
+      }
+     },
+     {
+       "id" : "15",
+       "idParent" : "3",
+       "name" : "Computadores",
+       "description" : "Categoría de venta de computadores",
+       "type" : "income",
+       "readOnly" : false,
+       "categoryRule": {
+          "id": "5",
+          "name": "Cuentas por cobrar",
+          "key": "RECEIVABLE_ACCOUNTS"
+       }
+      },
+      {
+      "id" : "25",
+      "idParent" : "",
+      "name" : "Compras inventariables",
+      "description" : "",
+      "type" : "expense",
+      "readOnly" : true
+      }
+  ]

@@ -5,11 +5,11 @@
 <a href="https://codeclimate.com/github/millancore/alegra/maintainability"><img src="https://api.codeclimate.com/v1/badges/10674e248e908aedc7e4/maintainability" /></a>
 <a href="https://codeclimate.com/github/millancore/alegra/test_coverage"><img src="https://api.codeclimate.com/v1/badges/10674e248e908aedc7e4/test_coverage" /></a>
 
-**Importante!!** Este SDK solo cuenta con metodos para administrar **Inventario** a traves de la API de Alegra, si usted necesita usar otros endpoints, este SDK fue creado modularmente lo que le permitira usarlo como marco de trabajo facilitandole enormemente la integracion.
+**Importante!!** Este SDK solo cuenta con metodos para administrar **Inventario** a traves de la API de Alegra, si usted necesita usar otros endpoints, este SDK fue creado modularmente lo que le permitira usarlo como marco de trabajo facilitandole la integracion.
 
 ## Alegra SDK
 
-Este es un SDK para para la API de [https://alegra.com]() que busca simplificar la integracion con proyectos en PHP.
+Este es un SDK para para la API de [alegra.com](https://alegra.com ) que busca simplificar la integracion con proyectos en PHP.
 
 ## Instalacion  
 **PHP 7.2 o superior**
@@ -22,10 +22,12 @@ composer require millancore/alegra
 
 ```php
 use Alegra\Alegra;
+use Alegra\Support\Country;
 
 $alegra = Alegra::setCredentials([
     'email' => 'alegrauser@email.com',
-    'token' => 'tokenAuthApiAccess'
+    'token' => 'tokenAuthApiAccess',
+    Country::COL
 ]);
 ```
 
@@ -109,8 +111,8 @@ que nos permiten recorrerlos para hacer uso de las entidades almacenadas.
 
 Iterar
 ```php
-foreach($product->price as $priceList) {
-    #PriceList Entity
+foreach($product->price as $price) {
+    #Price Entity
 }
 ```
 

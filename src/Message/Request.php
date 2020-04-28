@@ -55,6 +55,13 @@ class Request implements RequestInterface
         return $this->requestId;
     }
 
+    public function addQueryParams(array $query)
+    {
+        $this->options['query'] =  $query;
+
+        return $this;
+    }
+
     public function addJsonHeaders()
     {
         $this->options['headers'] = [

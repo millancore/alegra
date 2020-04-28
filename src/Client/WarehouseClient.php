@@ -2,6 +2,10 @@
 
 namespace Alegra\Client;
 
+use Alegra\Entity\EntityFactory;
+use Alegra\Entity\Warehouse;
+use Alegra\Message\Request;
+
 class WarehouseClient extends Client
 {
     /**
@@ -12,7 +16,13 @@ class WarehouseClient extends Client
      */
     public function getById(int $id)
     {
+        $response = $this->carrier->send(
+            Request::get('/warehouses/'.$id)
+                   ->addAuth($this->auth)
+                   ->addJsonHeaders()
+        );
 
+        return EntityFactory::fromJson($response->getBody(), Warehouse::class);
     }
 
 
@@ -22,8 +32,14 @@ class WarehouseClient extends Client
      * @param array $options
      * @return Collection
      */
-    public function getList(array $options)
+    public function getList()
     {
-
+        $response = $this->carrier->send(
+            Request::get('/warehouses/')
+                   ->addAuth($this->auth)
+                   ->addJsonHeaders()
+        );
+        
+        return EntityFactory::fromJson($response->getBody(), Warehouse::class, true);
     }
 }

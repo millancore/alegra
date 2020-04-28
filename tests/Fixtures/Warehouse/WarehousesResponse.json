@@ -1,0 +1,18 @@
+[
+    {
+       "id": "1",
+       "name": "Bodega Norte",
+       "observations": "Bodega ubicada en la zona norte",
+       "isDefault": true,
+       "address": "Calle principal #45",
+       "status": "active"
+     },
+     {
+       "id": "3",
+       "name": "Bodega Sur",
+       "observations": "Bodega ubicada en la zona sur",
+       "isDefault": false,
+       "address": null,
+       "status": "active"
+     }
+]

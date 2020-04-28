@@ -18,9 +18,9 @@ class EntityFactory
      * @param string $entity
      * @return void
      */
-    public static function fromJson(string $json, string $entity)
+    public static function fromJson(string $json, string $entity, $isCollection = false)
     {
-        return self::fromArray(json_decode($json, true), $entity);
+        return self::fromArray(json_decode($json, true), $entity, $isCollection);
     }
 
     /**

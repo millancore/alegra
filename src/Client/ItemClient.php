@@ -2,9 +2,10 @@
 
 namespace Alegra\Client;
 
-use Alegra\Entity\BaseItem;
+use Alegra\Entity\Item;
 use Alegra\Entity\EntityFactory;
 use Alegra\Message\Request;
+use Alegra\Validation\Validator;
 
 class ItemClient extends Client
 {
@@ -18,12 +19,12 @@ class ItemClient extends Client
     public function get(int $id)
     {
         $response = $this->carrier->send(
-            Request::get('/items/'.$id)
-                    ->addAuth($this->auth)
-                    ->addJsonHeaders()
+            Request::get('/items/' . $id)
+                ->addAuth($this->auth)
+                ->addJsonHeaders()
         );
 
-        return EntityFactory::fromJson($response->getBody(), BaseItem::class);
+        return EntityFactory::fromJson($response->getBody(), Item::class);
     }
 
     /**
@@ -32,55 +33,31 @@ class ItemClient extends Client
      * @param array $options
      * @return void
      */
-    public function getList(array $options)
+    public function getList(array $options = [])
     {
+        $validator = new Validator($options, [
+            'start' => ['type' => 'int', 'default' => 0],
+            'limit' => ['type' => 'int', 'default' => 30],
+            'order_direction' => [
+                'type' => 'string',
+                'default' => 'ASC',
+                'allow' =>  ['ASC', 'DESC']
+            ],
+            'order_field' => ['type' => 'string'],
+            'query' => ['type' => 'string'],
+            'idWarehouse' => ['type' => 'int'],
+        ]);
 
+        $options = $validator->validate();
+
+        $response = $this->carrier->send(
+            Request::get('/items/')
+                ->addQueryParams($options)
+                ->addAuth($this->auth)
+                ->addJsonHeaders()
+        );
+
+        return EntityFactory::fromJson($response->getBody(), Item::class, true);
     }
-
-    /**
-     * Persist Item
-     *
-     * @param BaseItem $item
-     * @return void
-     */
-    public function save(BaseItem $item)
-    {
-
-    }
-
-
-    /**
-     * Update Item 
-     *
-     * @param BaseItem $item
-     * @return void
-     */
-    public function update(BaseItem $item)
-    {
-
-    }
-
     
-    /**
-     * Delete Item
-     *
-     * @param integer|BaseItem $id|$Item
-     * @return void
-     */
-    public function delete($item)
-    {
-
-    }
-
-
-    /**
-     * Attach File to Item
-     *
-     * @param Resource $resource
-     * @return void
-     */
-    public function attach(int $id, Resource $resource)
-    {
-
-    }
 }

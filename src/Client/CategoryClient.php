@@ -2,6 +2,11 @@
 
 namespace Alegra\Client;
 
+use Alegra\Entity\Category;
+use Alegra\Entity\EntityFactory;
+use Alegra\Message\Request;
+use Alegra\Validation\Validator;
+
 class CategoryClient extends Client
 {
     /**
@@ -12,7 +17,13 @@ class CategoryClient extends Client
      */
     public function getById(int $id)
     {
+        $response = $this->carrier->send(
+            Request::get('/categories/')
+                   ->addAuth($this->auth)
+                   ->addJsonHeaders()
+        );
 
+        return EntityFactory::fromJson($response->getBody(), Category::class);
     }
 
 
@@ -22,8 +33,21 @@ class CategoryClient extends Client
      * @param array $options
      * @return Collection
      */
-    public function getList(array $options)
+    public function getList(array $options = [])
     {
+        $validator = new Validator($options, [
+            'format' => ['type' => 'string', 'default' => 'tree', 'allow' => ['plain', 'tree']],
+            'type' => ['type' => 'string', 'allow' => [ 'income', 'expense', 'equity', 'asset', 'liability']],
+            'categoryRule_key' => ['type' => 'string']
+        ]);
 
+        $response = $this->carrier->send(
+            Request::get('/categories/')
+                   ->addQueryParams($validator->validate())
+                   ->addAuth($this->auth)
+                   ->addJsonHeaders()
+        );
+
+        return EntityFactory::fromJson($response->getBody(), Category::class, true);
     }
 }
