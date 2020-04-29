@@ -3,7 +3,10 @@
 namespace Alegra\Message;
 
 use Alegra\Contract\ResponseInterface;
+use Alegra\Exception\HttpException;
 use Alegra\Support\Traits\ArrayableTrait;
+
+use function GuzzleHttp\json_decode;
 
 class Response implements ResponseInterface
 {
@@ -35,7 +38,12 @@ class Response implements ResponseInterface
    }
 
    public function getBody()
-   {
+   {    
+       if ($this->status !== 200) {
+           $errorMessage = json_decode($this->body);
+           throw new HttpException($errorMessage->error, $this->status);
+       }
+
        return $this->body;
    }
 

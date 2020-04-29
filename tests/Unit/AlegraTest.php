@@ -33,4 +33,16 @@ class AlegraTest extends TestCase
         $this->assertInstanceOf(Alegra::class, Alegra::getInstance());
     }
 
+    public function testTryToInstanceAlegraAgain()
+    {
+        $this->expectException(AlegraException::class);
+        $this->expectExceptionMessage('There is already an instance of Alegra, use "Alegra::getInstance()');
+
+        Alegra::setCredentials([
+            'email' => 'test@alegra.com',
+            'token' => 'tokeTestAlgraApiAccess',
+            'country' => Country::COL
+        ]);
+    }
+
 }

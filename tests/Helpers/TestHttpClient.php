@@ -3,8 +3,7 @@
 namespace Alegra\Tests\Helpers;
 
 use Alegra\Contract\HttpClientInterface;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\Request;
+use Alegra\Exception\HttpException;
 use GuzzleHttp\Psr7\Response;
 
 class TestHttpClient implements HttpClientInterface
@@ -24,10 +23,7 @@ class TestHttpClient implements HttpClientInterface
     public function request($method, $uri, array $options = [])
     {
         if ($this->exception) {
-            return new RequestException(
-                $this->exceptionMesagge, 
-                new Request($method, $uri, $options)  
-            );
+            throw new HttpException($this->exceptionMesagge);
         }
 
         return $this->response;
@@ -53,7 +49,7 @@ class TestHttpClient implements HttpClientInterface
     public function expectException(string $exceptionMesagge)
     {
         $this->exception = true;
-        $this->requestException = $exceptionMesagge;
+        $this->exceptionMesagge = $exceptionMesagge;
     }
 
 }

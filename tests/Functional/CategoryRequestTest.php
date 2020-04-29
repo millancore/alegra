@@ -1,6 +1,7 @@
 <?php
 
 use Alegra\Entity\Category as EntityCategory;
+use Alegra\Exception\HttpException;
 use Alegra\Support\Collection;
 use Alegra\Support\Facade\Category;
 use Alegra\Tests\Fixtures\AlegraFixture;
@@ -62,5 +63,44 @@ class CategoryRequestTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $categoryCollection);
         $this->assertEquals(3, $categoryCollection->count());
+    }
+
+    public function testCategoryNotFound()
+    {
+        $this->expectException(HttpException::class);
+        $this->expectExceptionMessage('No se encontró en la aplicación la categoría que se está buscando');
+        $this->expectExceptionCode(404);
+
+        $jsonResponse = file_get_contents(FIXTURES.'Category/CategoryNotFoundResponse.json');
+
+        $this->client->expectResponse(
+            new Response(404,
+                ['Content-type' => 'application/json'],
+                $jsonResponse
+            )
+        );
+
+        Category::getById(12);
+    }
+
+
+    public function testFaltalErrorOnRequest()
+    {
+        $this->expectException(HttpException::class);
+        $this->expectExceptionMessage('Fatal Error!!');
+    
+        
+        $this->client->expectException('Fatal Error!!');
+        $jsonResponse = file_get_contents(FIXTURES.'Category/CategoryResponse.json');
+
+        $this->client->expectResponse(
+            new Response(200, 
+                ['Content-type' => 'application/json'],
+                $jsonResponse
+            )
+        );
+
+        Category::getById(12);
+
     }
 }
