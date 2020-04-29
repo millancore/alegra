@@ -10,27 +10,31 @@ use Alegra\Support\Facade\Category;
 Consultar una categoria
 
 ```php
-$category = Category::getById(12);
+try {
+    $category = Category::getById(12);
+} catch (AlegraException $e) {
+    #...
+}
 
 $category->id;
 $category->name;
 ...
-
 ```
 
-Consultar lista de categorias, la opciones se pueden consultar en el documentacion de la API
+Consultar lista de categorias, la lista de parametros se pueden consultar en el documentacion de la API
 [parametros](https://developer.alegra.com/docs/lista-de-categor%C3%ADas)
 
 ```php
-
-$categories = Category::getList([
-    'format' => 'plain',
-    'type' => 'asset',
-    'categoryRule_key' => 'LIABILITIES'
-]);
+try {
+    $categories = Category::getList([
+        'format' => 'plain',
+        ...
+    ]);
+} catch (AlegraException $e) {
+    #...
+}
 
 foreach ($categories as $category) {
     # code...
 }
-
 ```

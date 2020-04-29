@@ -27,7 +27,7 @@ use Alegra\Support\Country;
 $alegra = Alegra::setCredentials([
     'email' => 'alegrauser@email.com',
     'token' => 'tokenAuthApiAccess',
-    Country::COL
+    'country' => Country::COL
 ]);
 ```
 
