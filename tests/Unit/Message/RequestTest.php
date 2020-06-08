@@ -28,8 +28,8 @@ class RequestTest extends TestCase
             'method' => 'GET',
             'options' => [
                 'auth' => [
-                'user' => 'testUser',
-                'password' => 'testToken',
+                    'testUser',
+                    'testToken',
                 ],
                 'headers' =>[
                     'Accept' => 'application/json',
