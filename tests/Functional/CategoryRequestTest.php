@@ -37,7 +37,7 @@ class CategoryRequestTest extends TestCase
             )
         );
 
-        $category = Category::getById(12);
+        $category = Category::get(12);
 
         $this->assertInstanceOf(EntityCategory::class, $category);
         $this->assertEquals(12, $category->id);
@@ -59,7 +59,7 @@ class CategoryRequestTest extends TestCase
             )
         );
 
-        $categoryCollection = Category::getList();
+        $categoryCollection = Category::all();
 
         $this->assertInstanceOf(Collection::class, $categoryCollection);
         $this->assertEquals(3, $categoryCollection->count());
@@ -80,7 +80,7 @@ class CategoryRequestTest extends TestCase
             )
         );
 
-        Category::getById(12);
+        Category::get(12);
     }
 
 
@@ -100,7 +100,7 @@ class CategoryRequestTest extends TestCase
             )
         );
 
-        Category::getById(12);
+        Category::get(12);
 
     }
 }

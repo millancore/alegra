@@ -36,7 +36,7 @@ class WarehouseRequestTest extends TestCase
             )
         );
 
-        $warehouse = Warehouse::getById(12);
+        $warehouse = Warehouse::get(12);
 
         $this->assertInstanceOf(EntityWarehouse::class, $warehouse);
         $this->assertEquals(12, $warehouse->id);
@@ -58,7 +58,7 @@ class WarehouseRequestTest extends TestCase
             )
         );
 
-        $warehouseCollection = Warehouse::getList();
+        $warehouseCollection = Warehouse::all();
 
         $this->assertInstanceOf(Collection::class, $warehouseCollection);
         $this->assertEquals(2, $warehouseCollection->count());

@@ -9,6 +9,7 @@ class PriceList extends Entity
     protected $status;
     protected $type;
     protected $percentage;
+    protected $main;
 
     /**
      * Set the value of id
@@ -66,6 +67,18 @@ class PriceList extends Entity
     public function setPercentage($percentage)
     {
         $this->percentage = $percentage;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of main
+     *
+     * @return  self
+     */ 
+    public function setMain($main)
+    {
+        $this->main = $main;
 
         return $this;
     }

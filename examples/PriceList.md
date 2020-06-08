@@ -11,7 +11,7 @@ Consultar una lista de precios por id.
 
 ```php
 try {
-   $priceList = PriceList::getById(12);
+   $priceList = PriceList::get(12);
 } catch (AlegraException $e){
     #...
 }
@@ -24,7 +24,7 @@ Consultar listado de lista de precios.
 
 ```php
 try {
-   $priceListCollection = PriceList::getList();
+   $priceListCollection = PriceList::all();
 } catch (AlegraException $e){
     #...
 }

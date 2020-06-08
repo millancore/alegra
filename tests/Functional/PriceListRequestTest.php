@@ -36,7 +36,7 @@ class PriceListRequestTest extends TestCase
             )
         );
 
-        $priceList = PriceList::getById(12);
+        $priceList = PriceList::get(12);
 
         $this->assertInstanceOf(EntityPriceList::class, $priceList);
         $this->assertEquals(12, $priceList->id);
@@ -57,7 +57,7 @@ class PriceListRequestTest extends TestCase
             )
         );
 
-        $priceListCollection = PriceList::getList();
+        $priceListCollection = PriceList::all();
 
         $this->assertInstanceOf(Collection::class, $priceListCollection);
         $this->assertEquals(3, $priceListCollection->count());

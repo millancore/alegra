@@ -11,7 +11,7 @@ Consultar una bodega por id.
 
 ```php
 try {
-   $warehouse = Warehouse::getById(12);
+   $warehouse = Warehouse::get(12);
 } catch (AlegraException $e){
     #...
 }
@@ -23,7 +23,7 @@ Consultar listado de Bodegas.
 
 ```php
 try {
-   $warehouseCollection = Warehouse::getList();
+   $warehouseCollection = Warehouse::all();
 } catch (AlegraException $e){
     #...
 }

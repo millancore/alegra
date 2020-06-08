@@ -16,10 +16,10 @@ class PriceListClient extends Client
      * @param integer $id
      * @return PriceList
      */
-    public function getById(int $id)
+    public function get(int $id)
     {
         $response = $this->carrier->send(
-            Request::get('/price-lists/'.$id)
+            Request::get('price-lists/'.$id)
                     ->addAuth($this->auth)
                     ->addJsonHeaders()
         );
@@ -33,14 +33,14 @@ class PriceListClient extends Client
      * @param array $options
      * @return Collection
      */
-    public function getList(array $options = [])
+    public function all(array $options = [])
     {
         $validator = new Validator($options, [
             'query' => ['type' => 'string']
         ]);
 
         $response = $this->carrier->send(
-            Request::get('/price-lists/')
+            Request::get('price-lists/')
                    ->addQueryParams($validator->validate())
                    ->addAuth($this->auth)
                    ->addJsonHeaders()

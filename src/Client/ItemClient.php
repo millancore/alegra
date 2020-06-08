@@ -19,7 +19,7 @@ class ItemClient extends Client
     public function get(int $id)
     {
         $response = $this->carrier->send(
-            Request::get('/items/' . $id)
+            Request::get('items/' . $id)
                 ->addAuth($this->auth)
                 ->addJsonHeaders()
         );
@@ -33,7 +33,7 @@ class ItemClient extends Client
      * @param array $options
      * @return void
      */
-    public function getList(array $options = [])
+    public function all(array $options = [])
     {
         $validator = new Validator($options, [
             'start' => ['type' => 'int', 'default' => 0],
@@ -51,7 +51,7 @@ class ItemClient extends Client
         $options = $validator->validate();
 
         $response = $this->carrier->send(
-            Request::get('/items/')
+            Request::get('items/')
                 ->addQueryParams($options)
                 ->addAuth($this->auth)
                 ->addJsonHeaders()

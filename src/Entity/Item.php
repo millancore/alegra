@@ -60,6 +60,9 @@ class Item extends Entity implements MappableInterface
      */
     protected $itemCategory;
 
+    protected $productKey;
+    protected $type;
+
     /**
      * Initialize Collections
      *
@@ -248,6 +251,30 @@ class Item extends Entity implements MappableInterface
     public function setItemCategory(ItemCategory $itemCategory)
     {
         $this->itemCategory = $itemCategory;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of productKey
+     *
+     * @return  self
+     */ 
+    public function setProductKey($productKey)
+    {
+        $this->productKey = $productKey;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of type
+     *
+     * @return  self
+     */ 
+    public function setType($type)
+    {
+        $this->type = $type;
 
         return $this;
     }

@@ -11,7 +11,7 @@ Colsultar un producto/servicio por id
 
 ```php
 try {
-   $product = Item::getById(12);
+   $product = Item::get(12);
 } catch (AlegraException $e){
     #...
 }
@@ -21,7 +21,7 @@ Consultar lista de productos/servicios, las lista de parametros la podes encontr
 
 ```php
 try {
-   $productCollection = Item::getlist([
+   $productCollection = Item::all([
        'query' => 'cuaderno'
        ....
    ]);

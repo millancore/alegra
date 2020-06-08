@@ -14,10 +14,10 @@ class WarehouseClient extends Client
      * @param integer $id
      * @return Warehouse
      */
-    public function getById(int $id)
+    public function get(int $id)
     {
         $response = $this->carrier->send(
-            Request::get('/warehouses/'.$id)
+            Request::get('warehouses/'.$id)
                    ->addAuth($this->auth)
                    ->addJsonHeaders()
         );
@@ -32,10 +32,10 @@ class WarehouseClient extends Client
      * @param array $options
      * @return Collection
      */
-    public function getList()
+    public function all()
     {
         $response = $this->carrier->send(
-            Request::get('/warehouses/')
+            Request::get('warehouses/')
                    ->addAuth($this->auth)
                    ->addJsonHeaders()
         );

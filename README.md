@@ -66,7 +66,7 @@ Asi que para traer un producto por Id es tan simple como esto.
 
 use Alegra\Support\Facade\Item;
 
-$product = Item::getByName(12);
+$product = Item::get(12);
 
 ```
 
@@ -82,7 +82,7 @@ Aqui una lista de los Facades disponibles, cada uno cuenta con la lista de metod
 Cuando hacemos llamadas a la API de Alegra a traves de este SDK obtenemos entidades, podemos acceder a las propiedades de cada entidad de la siguiente manera.
 
 ```php
-$product = Item::getByName(12);
+$product = Item::get(12);
 
 $product->id
 $product->name
@@ -142,7 +142,7 @@ use Alegra\Support\Facade\Item;
 use Alegra\Exception\AlegraException;
 
 try {
-    $product = Item::getByName(12);
+    $product = Item::get(12);
 } catch (AlegraException $exception) {
     #....
 }

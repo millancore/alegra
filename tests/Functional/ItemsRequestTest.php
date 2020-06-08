@@ -66,7 +66,7 @@ class ItemsRequestTest extends TestCase
             )
         );
 
-        $itemsCollection = Item::getList();
+        $itemsCollection = Item::all();
 
         $this->assertInstanceOf(Collection::class, $itemsCollection);
         $this->assertEquals(3, $itemsCollection->count());
@@ -85,7 +85,7 @@ class ItemsRequestTest extends TestCase
             )
         );
 
-         Item::getList([
+         Item::all([
             'invalid' => 12   
         ]);
     }

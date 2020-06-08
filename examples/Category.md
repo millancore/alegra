@@ -11,7 +11,7 @@ Consultar una categoria
 
 ```php
 try {
-    $category = Category::getById(12);
+    $category = Category::get(12);
 } catch (AlegraException $e) {
     #...
 }
@@ -26,7 +26,7 @@ Consultar lista de categorias, la lista de parametros se pueden consultar en el 
 
 ```php
 try {
-    $categories = Category::getList([
+    $categories = Category::all([
         'format' => 'plain',
         ...
     ]);

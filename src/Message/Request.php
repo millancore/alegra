@@ -75,8 +75,8 @@ class Request implements RequestInterface
     public function addAuth(AuthenticationInterface $auth)
     {
         $this->options['auth'] = [
-           'user' => $auth->getUser(),
-           'password' => $auth->getToken()
+            $auth->getUser(),
+            $auth->getToken()
         ];
  
         return $this;

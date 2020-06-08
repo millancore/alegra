@@ -8,6 +8,7 @@ class Tax extends Entity
     protected $name;
     protected $percentage;
     protected $description;
+    protected $type;
     protected $status;
 
     /**
@@ -66,6 +67,18 @@ class Tax extends Entity
     public function setStatus($status)
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of type
+     *
+     * @return  self
+     */ 
+    public function setType($type)
+    {
+        $this->type = $type;
 
         return $this;
     }

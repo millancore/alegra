@@ -15,10 +15,10 @@ class CategoryClient extends Client
      * @param integer $id
      * @return Category
      */
-    public function getById(int $id)
+    public function get(int $id)
     {
         $response = $this->carrier->send(
-            Request::get('/categories/')
+            Request::get('categories/')
                    ->addAuth($this->auth)
                    ->addJsonHeaders()
         );
@@ -33,7 +33,7 @@ class CategoryClient extends Client
      * @param array $options
      * @return Collection
      */
-    public function getList(array $options = [])
+    public function all(array $options = [])
     {
         $validator = new Validator($options, [
             'format' => ['type' => 'string', 'default' => 'tree', 'allow' => ['plain', 'tree']],
@@ -42,7 +42,7 @@ class CategoryClient extends Client
         ]);
 
         $response = $this->carrier->send(
-            Request::get('/categories/')
+            Request::get('categories/')
                    ->addQueryParams($validator->validate())
                    ->addAuth($this->auth)
                    ->addJsonHeaders()
