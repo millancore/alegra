@@ -1,6 +1,7 @@
 <?php
 
 use Alegra\Entity\Inventory;
+use Alegra\Support\Collection;
 use Alegra\Tests\Fixtures\WarehouseFixture;
 use PHPUnit\Framework\TestCase;
 
@@ -12,11 +13,13 @@ class InventoryTest extends TestCase
             'unit' => "piece",
             'availableQuantity' => 150,
             'unitCost' => 560,
-            'initialQuantity' => 320
+            'initialQuantity' => 320,
+            'warehouses' => new Collection([
+                WarehouseFixture::getInstance()
+            ])
         ];
 
         $inventory = new Inventory($dataAttributes);
-        $inventory->addWarehouse(WarehouseFixture::getInstance());
         
         $this->assertEquals($this->expectInventory(), $inventory->toArray());
     }

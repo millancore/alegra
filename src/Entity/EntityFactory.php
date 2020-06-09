@@ -2,11 +2,7 @@
 
 namespace Alegra\Entity;
 
-use Alegra\Contract\MappableInterface;
 use Alegra\Support\Collection;
-use Alegra\Support\EntityMapper;
-use Doctrine\Common\Annotations\AnnotationReader;
-use ReflectionClass;
 
 class EntityFactory
 {
@@ -20,7 +16,7 @@ class EntityFactory
      */
     public static function fromJson(string $json, string $entity, $isCollection = false)
     {
-        return self::fromArray(json_decode($json, true), $entity, $isCollection);
+        return self::build(json_decode($json), $entity, $isCollection);
     }
 
     /**
@@ -31,24 +27,22 @@ class EntityFactory
      * @param boolean $isCollection
      * @return Entity|Collection
      */
-    public static function fromArray(array $arrayEntity, string $entity, bool $isCollection = false)
+    public static function build($data, string $entity, bool $isCollection = false)
     {
-        $reflectionEntity = new ReflectionClass($entity);
-
         if ($isCollection) {
             $collection = new Collection;
-
-            array_map(function($item) use ($reflectionEntity, $collection, $entity){
+            array_map(function($item) use ($collection, $entity){
                 return $collection->add(new $entity(
-                    self::resolver($item, $reflectionEntity)
+                    self::resolver(get_object_vars($item))
                 ));
-            }, $arrayEntity);
+            }, $data);
 
             return $collection;
         }
 
-        return new $entity(self::resolver($arrayEntity, $reflectionEntity));
-
+        return new $entity(
+            self::resolver(get_object_vars($data))
+        );
     }
 
 
@@ -56,34 +50,32 @@ class EntityFactory
      * Resolve recursive Entities
      *
      * @param array $arrayEntity
-     * @param ReflectionClass $reflectionEntity
      * @return void
      */
-    public static function resolver(array &$arrayEntity, ReflectionClass $reflectionEntity)
-    {
-        if (!$reflectionEntity->isSubclassOf(MappableInterface::class)) {
-            return $arrayEntity;
-        }
-
-        $reader = new AnnotationReader();
-        foreach ($arrayEntity as $key => $value) {
-            $entityInfo = $reader->getPropertyAnnotation(
-                $reflectionEntity->getProperty($key),
-                EntityMapper::class
-            );
-
-            if (is_null($entityInfo)) {
-                $arrayEntity[$key] = $value;
-                continue;
+    public static function resolver($data)
+    {   
+        foreach ($data as $key => $value) {            
+            if (is_array($value)) {
+                $data[$key] = self::build($value, self::getEntityClass($key), true);
             }
 
-            $arrayEntity[$key] = self::fromArray(
-                $value,
-                $entityInfo->getEntity(),
-                $entityInfo->isCollection()
-            );
+            if (is_object($value)) {
+                $data[$key] = self::build($value, self::getEntityClass($key), false);
+            }
+        }
+        
+        return $data;
+    }
+
+
+    private static function getEntityClass(string $entity)
+    {
+        if ($entity == 'warehouses') {
+            $entity = 'warehouse';
         }
 
-        return $arrayEntity;
+        return '\\Alegra\Entity\\'.ucfirst($entity);
     }
+
+
 }

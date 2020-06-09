@@ -4,10 +4,10 @@ namespace Alegra\Support\Traits;
 
 trait FillAttributesTrait
 {
-    public function fill(array $attributes)
+    private function fill(array $attributes)
     {
-        foreach ($attributes as $name => $value) {
-            $this->{'set'.ucfirst($name)}($value);
+        foreach ($attributes as $key => $value) {
+            $this->attributes[$key] = $value;
         }
     }
 }

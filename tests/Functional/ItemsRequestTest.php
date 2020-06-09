@@ -42,8 +42,7 @@ class ItemsRequestTest extends TestCase
         );
 
         /**@var BaseItem */
-        $product = Item::get(12);
-        
+        $product = Item::get(12);        
         # Validate Logger
         $this->assertTrue($this->logger->isLogged());
 

@@ -39,7 +39,7 @@ class Response implements ResponseInterface
 
    public function getBody()
    {    
-       if ($this->status !== 200) {
+       if ($this->status >= 400) {
            $errorMessage = json_decode($this->body);
            throw new HttpException($errorMessage->error, $this->status);
        }
