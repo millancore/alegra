@@ -2,20 +2,18 @@
 
 namespace Alegra\Entity;
 
+use Alegra\Contract\ArrayableInterface;
 use Alegra\Contract\EntityInterface;
-use Alegra\Support\Traits\{ArrayableTrait, FillAttributesTrait};
+use Alegra\Support\Traits\FillAttributesTrait;
 
 abstract class Entity implements EntityInterface
 {
-   use FillAttributesTrait,
-   ArrayableTrait;
+   use FillAttributesTrait;
+
+   protected $attributes = [];
 
    public function __construct(array $attributes = [])
    {
-       if (method_exists($this, 'initialize')) {
-           call_user_func([$this, 'initialize']);
-       }
-
        $this->fill($attributes);
    }
 
@@ -23,13 +21,34 @@ abstract class Entity implements EntityInterface
     * Dinamic get Entity propierties
     *
     * @param string $name
-    * @return void
+    * @return mixed
     */
    public function __get($name)
-   {
-       return $this->{$name};
+   {   
+       if (!isset($this->attributes[$name])) {
+           return null;
+       }
+
+       return $this->attributes[$name];
    }
 
+   /**
+    * Get Entities as Array
+    *
+    * @return array
+    */
+   public function toArray()
+   {
+       return array_map(function ($value) {
+           return $value instanceof ArrayableInterface ? $value->toArray() : $value;
+       }, $this->attributes);
+   }
+
+   /**
+    * Get Entities as Json
+    *
+    * @return string
+    */
    public function jsonSerialize()
    {
       return $this->toArray();

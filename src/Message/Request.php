@@ -89,11 +89,65 @@ class Request implements RequestInterface
         }
     }
 
+    /**
+     * GET Request
+     *
+     * @param string $uri
+     * @param array $options
+     * @param int|string $requestId
+     * @return self
+     */
     public static function get(string $uri, array $options = [], $requestId = null)
     {
         return new self($uri, 'GET', $options, $requestId);
     }
 
+    /**
+     * POST Request
+     *
+     * @param string $uri
+     * @param array $options
+     * @param int|string $requestId
+     * @return self
+     */
+    public static function post(string $uri, array $options = [], $requestId = null)
+    {
+        return new self($uri, 'POST', $options, $requestId);
+    }
+
+    /**
+     * PUT Request
+     *
+     * @param string $uri
+     * @param array $options
+     * @param int|string $requestId
+     * @return self
+     */
+    public static function put(string $uri, array $options = [], $requestId = null)
+    {
+        return new self($uri, 'PUT', $options, $requestId);
+    }
+
+
+    /**
+     * DELETE Request
+     *
+     * @param string $uri
+     * @param array $options
+     * @param int|string $requestId
+     * @return self
+     */
+    public static function delete(string $uri, array $options = [], $requestId = null)
+    {
+        return new self($uri, 'DELETE', $options, $requestId);
+    }
+
+    
+    /**
+     * Request as Json
+     *
+     * @return string
+     */
     public function jsonSerialize()
     {
         return $this->toArray();

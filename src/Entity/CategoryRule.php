@@ -2,7 +2,7 @@
 
 namespace Alegra\Entity;
 
-class PriceList extends Entity
+class CategoryRule extends Entity
 {
-   
+
 }
